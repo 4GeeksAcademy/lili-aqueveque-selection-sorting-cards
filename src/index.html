@@ -3,26 +3,161 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello Rigo with Vanilla.js</title>
+    <title>Bubble sorting cards</title>
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="shortcut icon" href="./4geeks.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Style+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container-fluid text-center">
-      <h1 class="mt-5">Hello Rigo!</h1>
-      <img src="./rigo-baby.jpg" />
-      <p class="alert alert-warning mt-4">
-        If this text is <b>not</b> centered and <b>yellow</b>, you probably have
-        an error
-      </p>
-      <div class="fixed-bottom p-4">
-        Made with ❤️ by
-        <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
+    <div class="container-fluid text-center velvet-bg">
+      <!--NavBar-->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <img src="src/assets/img/buble.png" width="20px" />
+          <a class="navbar-brand ms-1" href="./index.html">Bubble Sort</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item mt-1 ms-5 ps-5">
+                <label for="numberofCards">Original (3-11):</label>
+                <input
+                  type="number"
+                  id="numberOfCardsInput"
+                  min="3"
+                  max="11"
+                  class="ms-1"
+                />
+              </li>
+              <li class="nav-item">
+                <button
+                  id="submitButton"
+                  class="btn btn-sm mt-1 ms-4 draw-button"
+                >
+                  Draw
+                </button>
+              </li>
+              <li class="nav-item">
+                <button type="button" class="btn btn-sm mt-1 ms-4 sort-button">
+                  Sort
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--One row of cards, MIN 3 CARDS - MAX 11 because like that we use the col=11+1, 11 cards, 1 col of numbers-->
+      <div class="container">
+        <div class="row row-original" id="rowOriginal">
+          <div class="col-sm-1 firstChild">
+            <!--First card frame-->
+            <div class="card-frame bg-body-tertiary position-relative">
+              <div
+                class="position-absolute top-0 start-0 translate-middle ms-3 mt-3 upper"
+              >
+                ♥
+              </div>
+              <div
+                class="position-absolute top-50 start-50 translate-middle center"
+              >
+                5
+              </div>
+              <div
+                class="position-absolute top-100 start-100 translate-middle lower custom-position"
+              >
+                ♥
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <!--Second card frame-->
+            <div class="card-frame bg-body-tertiary position-relative">
+              <div
+                class="position-absolute top-0 start-0 translate-middle ms-3 mt-3 upper"
+              >
+                ♣
+              </div>
+              <div
+                class="position-absolute top-50 start-50 translate-middle center"
+              >
+                8
+              </div>
+              <div
+                class="position-absolute top-100 start-100 translate-middle lower custom-position"
+              >
+                ♣
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <!--Third card frame-->
+            <div
+              class="card-frame bg-body-tertiary position-relative text-danger"
+            >
+              <div
+                class="position-absolute top-0 start-0 translate-middle ms-3 mt-3 upper"
+              >
+                ♦
+              </div>
+              <div
+                class="position-absolute top-50 start-50 translate-middle center"
+              >
+                K
+              </div>
+              <div
+                class="position-absolute top-100 start-100 translate-middle lower custom-position"
+              >
+                ♦
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Bubble Log text-->
+      <p class="bubble-log text-left">Bubble Log:</p>
+      <!--Rows of cards, MIN 3 CARDS - MAX 11 because like that we use the col=11+1, 11 cards, 1 col of numbers-->
+      <div class="container container-0">
+        <div class="row row-0">
+          <div class="col-sm-1 number">0</div>
+          <div class="col-sm-1">1 card</div>
+          <div class="col-sm-1">2 card</div>
+          <div class="col-sm-1">3 card</div>
+        </div>
+      </div>
+      <div class="container container-1">
+        <div class="row row-1">
+          <div class="col-sm-1 number">1</div>
+          <div class="col-sm-1">1 card</div>
+          <div class="col-sm-1">2 card</div>
+          <div class="col-sm-1">3 card</div>
+        </div>
       </div>
     </div>
   </body>

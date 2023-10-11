@@ -1,1 +1,61 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+body {
+  background-image: url("./assets/img/solitaire\ background.jpg");
+  color: white;
+}
+.navbar {
+  background-image: url("./assets/img/wooden\ nav.png");
+  background-size: cover;
+  color: white;
+}
+.navbar-brand {
+  font-family: "Style Script", cursive;
+  color: white;
+  font-size: x-large;
+  text-shadow: 3px 0 #55000e;
+}
+.bubble-log {
+  font-family: "Style Script", cursive;
+  font-size: 25px;
+  text-align: left;
+  padding-left: 175px;
+}
+.number {
+  font-style: italic;
+}
+.card-frame {
+  height: 100px;
+  padding: 5px;
+  border-radius: 5%;
+  margin: 2px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.card-frame {
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+}
+.custom-position {
+  margin-top: -17px;
+  margin-left: -14px;
+  transform: rotate(180deg);
+}
+.draw-button {
+  background-color: goldenrod;
+  box-shadow: 2px 2px 4px rgb(145, 81, 21);
+}
+.sort-button {
+  background-color: goldenrod;
+  box-shadow: 2px 2px 4px rgb(145, 81, 21);
+}
+.draw-button:hover {
+  background-color: gold;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.sort-button:hover {
+  background-color: gold;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
