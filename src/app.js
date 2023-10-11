@@ -11,6 +11,15 @@ window.onload = function() {
   const submitButton = document.getElementById("submitButton");
   const rowOriginal = document.getElementById("rowOriginal");
 
+  // Function to create card objects
+  function createCardObject(upperIcon, centerIcon, lowerIcon) {
+    return {
+      upperIcon: upperIcon.textContent,
+      centerIcon: centerIcon.textContent,
+      lowerIcon: lowerIcon.textContent
+    };
+  }
+
   // Add event listener for the submit button click event
   submitButton.addEventListener("click", function() {
     // Get the number of cards from the input value
@@ -82,6 +91,41 @@ window.onload = function() {
         centerIcon[i].style.color = "black";
         lowerIcon[i].style.color = "black";
       }
+    }
+    // Get card elements after generating
+    let upperIcons = document.querySelectorAll(".upper");
+    let centerIcons = document.querySelectorAll(".center");
+    let lowerIcons = document.querySelectorAll(".lower");
+
+    // Create an array to store card objects
+    let cardsArray = [];
+
+    // Iterate through card elements and create card objects
+    for (let i = 0; i < numberOfCards; i++) {
+      let cardObject = createCardObject(
+        upperIcons[i],
+        centerIcons[i],
+        lowerIcons[i]
+      );
+      cardsArray.push(cardObject);
+    }
+
+    let sortedCards = cardsArray.sort((a, b) =>
+      a.centerIcon.localeCompare(b.centerIcon)
+    );
+
+    let rowZero = document.querySelector(".row-zero");
+
+    for (let k = 0; k < sortedCards.length; k++) {
+      // Create a new div element
+      let newDivSort = document.createElement("div");
+
+      // Set the class and innerHTML of the new div
+      newDivSort.className = "col-sm-1 number";
+      newDivSort.innerHTML = k;
+
+      // Append the new div to rowZero
+      rowZero.appendChild(newDivSort);
     }
   });
 };
