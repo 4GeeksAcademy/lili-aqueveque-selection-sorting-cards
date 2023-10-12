@@ -32,7 +32,7 @@
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <img src="src/assets/img/buble.png" width="20px" />
-          <a class="navbar-brand ms-1" href="./index.html">Bubble Sort</a>
+          <a class="navbar-brand ms-2" href="./index.html">Bubble Sort</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -47,12 +47,12 @@
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item mt-1 ms-5 ps-5">
-                <label for="numberofCards">Original (2-15):</label>
+                <label for="numberofCards">Original (2-14):</label>
                 <input
                   type="number"
                   id="numberOfCardsInput"
                   min="2"
-                  max="15"
+                  max="14"
                   class="ms-1"
                 />
               </li>
@@ -65,7 +65,7 @@
                 </button>
               </li>
               <li class="nav-item">
-                <button type="button" class="btn btn-sm mt-1 ms-4 sort-button">
+                <button type="button" class="btn btn-sm mt-1 ms-4 sort-button" id="sort-button">
                   <i class="fa-solid fa-arrow-down-short-wide"></i> SORT
                 </button>
               </li>
@@ -88,10 +88,15 @@
 
         <div class="cards-container" id="cardsContainer"></div>
 
-        <h4>Bubble Log</h4>
+        <h4 id="bubble-log"></h4>
 
-        <div class="sorted-cards" id="sortedCards"></div>
+        <div class="sorted-cards" id="sortedCards">
+        </div>
     </div>
+    <audio id="cardSound">
+      <source src="src/assets/card-sounds.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </main>
 
     <script src="app.js"></script>
