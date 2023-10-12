@@ -28,6 +28,7 @@
   <body>
     <div class="container-fluid text-center velvet-bg">
       <!--NavBar-->
+      <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <img src="src/assets/img/buble.png" width="20px" />
@@ -46,12 +47,12 @@
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item mt-1 ms-5 ps-5">
-                <label for="numberofCards">Original (3-11):</label>
+                <label for="numberofCards">Original (2-15):</label>
                 <input
                   type="number"
                   id="numberOfCardsInput"
-                  min="3"
-                  max="11"
+                  min="2"
+                  max="15"
                   class="ms-1"
                 />
               </li>
@@ -81,90 +82,18 @@
           </div>
         </div>
       </nav>
-      <!--One row of cards, MIN 3 CARDS - MAX 11 because like that we use the col=11+1, 11 cards, 1 col of numbers-->
+    </header>
+    <main>
       <div class="container">
-        <div class="row row-original" id="rowOriginal">
-          <div class="col-sm-1 firstChild">
-            <!--First card frame-->
-            <div class="card-frame bg-body-tertiary position-relative">
-              <div
-                class="position-absolute top-0 start-0 translate-middle ms-3 mt-3 upper"
-              >
-                ♥
-              </div>
-              <div
-                class="position-absolute top-50 start-50 translate-middle center"
-              >
-                5
-              </div>
-              <div
-                class="position-absolute top-100 start-100 translate-middle lower custom-position"
-              >
-                ♥
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-1">
-            <!--Second card frame-->
-            <div class="card-frame bg-body-tertiary position-relative">
-              <div
-                class="position-absolute top-0 start-0 translate-middle ms-3 mt-3 upper"
-              >
-                ♣
-              </div>
-              <div
-                class="position-absolute top-50 start-50 translate-middle center"
-              >
-                8
-              </div>
-              <div
-                class="position-absolute top-100 start-100 translate-middle lower custom-position"
-              >
-                ♣
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-1">
-            <!--Third card frame-->
-            <div
-              class="card-frame bg-body-tertiary position-relative text-danger"
-            >
-              <div
-                class="position-absolute top-0 start-0 translate-middle ms-3 mt-3 upper"
-              >
-                ♦
-              </div>
-              <div
-                class="position-absolute top-50 start-50 translate-middle center"
-              >
-                K
-              </div>
-              <div
-                class="position-absolute top-100 start-100 translate-middle lower custom-position"
-              >
-                ♦
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!--Bubble Log text-->
-      <p class="bubble-log text-left">Bubble Log:</p>
-      <!--Rows of cards, MIN 3 CARDS - MAX 11 because like that we use the col=11+1, 11 cards, 1 col of numbers-->
-      <div class="container container-0">
-        <div class="row row-zero">
-          <div class="col-sm-1 number">0</div>
-        </div>
-      </div>
-      <div class="container container-1">
-        <div class="row row-1">
-          <div class="col-sm-1 number">1</div>
-          <div class="col-sm-1">1 card</div>
-          <div class="col-sm-1">2 card</div>
-          <div class="col-sm-1">3 card</div>
-        </div>
-      </div>
+        <div class="cards-container" id="cardsContainer"></div>
+
+        <h4>Bubble Log</h4>
+
+        <div class="sorted-cards" id="sortedCards"></div>
     </div>
+  </main>
+
+    <script src="app.js"></script>
   </body>
 </html>

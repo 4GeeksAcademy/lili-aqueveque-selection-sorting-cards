@@ -8,7 +8,8 @@ body {
   background-size: cover;
   color: white;
 }
-.navbar-brand {
+.navbar-brand,
+h4 {
   font-family: "Style Script", cursive;
   color: white;
   font-size: x-large;
@@ -64,15 +65,55 @@ body {
   color: rgb(155, 75, 0);
   width: 100px;
 }
-.draw-button:hover {
+.draw-button:hover,
+.draw-button:active {
   background-color: gold;
   color: rgb(155, 75, 0);
 }
-.sort-button:hover {
+.sort-button:hover,
+.draw-button:active {
   background-color: gold;
   color: rgb(155, 75, 0);
 }
-.new-button:hover {
+.new-button:hover,
+.draw-button:active {
   background-color: gold;
   color: rgb(155, 75, 0);
+}
+.card {
+  width: 100px;
+  height: 150px;
+  border: 1px solid black;
+  margin: 10px;
+  text-align: center;
+  display: inline-block;
+}
+
+.red {
+  color: red;
+}
+
+.black {
+  color: black;
+}
+.div-size {
+  width: 4em;
+  height: 6em;
+  box-shadow: 0px 0px 10px var(--clr-gray-med);
+  margin: 1em 1em 1em 0;
+  background-color: white;
+  border-radius: 5px;
+}
+
+#cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.lower {
+  transform: rotate(180deg);
+}
+.center {
+  font-size: 22px;
+  font-family: "Times New Roman", Times, serif;
 }

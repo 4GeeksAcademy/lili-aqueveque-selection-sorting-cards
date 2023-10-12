@@ -6,126 +6,84 @@ document.getElementById("refreshButton").addEventListener("click", function() {
 });
 
 window.onload = function() {
-  // Get the input element and submit button
-  const numberOfCardsInput = document.getElementById("numberOfCardsInput");
-  const submitButton = document.getElementById("submitButton");
-  const rowOriginal = document.getElementById("rowOriginal");
+  const drawCards = document.querySelector(".draw-button");
 
-  // Function to create card objects
-  function createCardObject(upperIcon, centerIcon, lowerIcon) {
-    return {
-      upperIcon: upperIcon.textContent,
-      centerIcon: centerIcon.textContent,
-      lowerIcon: lowerIcon.textContent
-    };
+  drawCards.addEventListener("click", generateCards);
+
+  function generateRandomCard() {
+    const symbols = ["♠", "♣", "♦", "♥"];
+    const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K"];
+    const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+    const value = values[Math.floor(Math.random() * values.length)];
+    const color = symbol === "♠" || symbol === "♣" ? "black" : "red";
+
+    return { symbol, value, color };
+  }
+  const cards = [];
+  function generateCards() {
+    const numberOfCards = document.getElementById("numberOfCardsInput").value;
+    const cardsContainer = document.getElementById("cardsContainer");
+    const sortedCardsContainer = document.getElementById("sortedCards");
+    // Clear the cards container before adding new cards
+    cardsContainer.innerHTML = "";
+
+    //Generate random cards
+
+    for (let i = 0; i < numberOfCards; i++) {
+      const card = generateRandomCard();
+      cards.push(card);
+
+      //Create card element
+      const cardElement = document.createElement("div");
+      cardElement.classList.add("div-size", "position-relative");
+
+      for (let j = 0; j < 3; j++) {
+        const cardDetails = document.createElement("div");
+        if (j == 0) {
+          cardDetails.classList.add("position-absolute", "upper", card.color);
+          cardDetails.style.top = "4px"; // Adjust the top position as needed
+          cardDetails.style.left = "5px"; // Adjust the left position as needed
+          cardDetails.style.color = card.color;
+          cardDetails.textContent = `${card.symbol}`;
+        } else if (j == 1) {
+          cardDetails.classList.add("position-absolute", "center", card.color);
+          cardDetails.style.top = "50%"; // Center vertically
+          cardDetails.style.left = "50%"; // Center horizontally
+          cardDetails.style.transform = "translate(-50%, -50%)"; // Center the element
+          cardDetails.style.color = card.color;
+          cardDetails.textContent = `${card.value}`;
+        } else {
+          cardDetails.classList.add("position-absolute", "lower", card.color);
+          cardDetails.style.bottom = "4px"; // Adjust the bottom position as needed
+          cardDetails.style.right = "5px"; // Adjust the right position as needed
+          cardDetails.style.color = card.color;
+          cardDetails.textContent = `${card.symbol}`;
+        }
+        cardElement.appendChild(cardDetails);
+      }
+      cardsContainer.appendChild(cardElement);
+    }
   }
 
-  // Add event listener for the submit button click event
-  submitButton.addEventListener("click", function() {
-    // Get the number of cards from the input value
-    let numberOfCards = parseInt(numberOfCardsInput.value);
-    numberOfCards = numberOfCards >= 3 ? numberOfCards : 3;
-
-    // Get the number of existing cards
-    let existingCardsCount = rowOriginal.children.length;
-
-    // Calculate the number of additional cards needed
-    let cardsNeeded = numberOfCards - existingCardsCount;
-
-    if (cardsNeeded > 0) {
-      // Get the first card element to clone
-      const existingCard = rowOriginal.querySelector(".firstChild");
-
-      // Clone and append the additional cards
-      for (let j = 0; j < cardsNeeded; j++) {
-        // Clone the first card element (not its children)
-        const clonedCard = existingCard.cloneNode(true);
-
-        // Append the cloned card element to the parent
-        rowOriginal.appendChild(clonedCard);
+  // Bubble sort the cards
+  const sortedCards = cards.slice();
+  for (let i = 0; i < sortedCards.length - 1; i++) {
+    for (let j = 0; j < sortedCards.length - 1 - i; j++) {
+      if (sortedCards[j].value > sortedCards[j + 1].value) {
+        //swap cards
+        const temp = sortedCards[j]; //auxiliar
+        sortedCards[j] = sortedCards[j + 1];
+        sortedCards[j + 1] = temp;
       }
     }
+  }
 
-    let card = document.querySelector(".card-frame");
-    let upperIcon = document.querySelectorAll(".upper");
-    let lowerIcon = document.querySelectorAll(".lower");
-    let centerIcon = document.querySelectorAll(".center");
-    //Function to create cards
-    for (let i = 0; i < numberOfCards; i++) {
-      // Random stuff for card colors and figures
-      let randomIcon = Math.floor(Math.random() * 4 + 1);
-      let randomNumber = Math.floor(Math.random() * 12 + 1);
-      let randomColor = Math.floor(Math.random() * 2 + 1);
-      if (randomIcon == 1) {
-        upperIcon[i].innerHTML = "♦";
-        lowerIcon[i].innerHTML = "♦";
-      } else if (randomIcon == 2) {
-        upperIcon[i].innerHTML = "♠";
-        lowerIcon[i].innerHTML = "♠";
-      } else if (randomIcon == 3) {
-        upperIcon[i].innerHTML = "♣";
-        lowerIcon[i].innerHTML = "♣";
-      } else {
-        upperIcon[i].innerHTML = "♥";
-        lowerIcon[i].innerHTML = "♥";
-      }
-
-      if (randomNumber == 1) {
-        centerIcon[i].innerHTML = "A";
-      } else if (randomNumber == 10) {
-        centerIcon[i].innerHTML = "J";
-      } else if (randomNumber == 10) {
-        centerIcon[i].innerHTML = "Q";
-      } else if (randomNumber == 10) {
-        centerIcon[i].innerHTML = "K";
-      } else {
-        centerIcon[i].innerHTML = randomNumber;
-      }
-
-      if (randomColor == 1) {
-        upperIcon[i].style.color = "red";
-        centerIcon[i].style.color = "red";
-        lowerIcon[i].style.color = "red";
-      } else {
-        upperIcon[i].style.color = "black";
-        centerIcon[i].style.color = "black";
-        lowerIcon[i].style.color = "black";
-      }
-    }
-    // Get card elements after generating
-    let upperIcons = document.querySelectorAll(".upper");
-    let centerIcons = document.querySelectorAll(".center");
-    let lowerIcons = document.querySelectorAll(".lower");
-
-    // Create an array to store card objects
-    let cardsArray = [];
-
-    // Iterate through card elements and create card objects
-    for (let i = 0; i < numberOfCards; i++) {
-      let cardObject = createCardObject(
-        upperIcons[i],
-        centerIcons[i],
-        lowerIcons[i]
-      );
-      cardsArray.push(cardObject);
-    }
-
-    let sortedCards = cardsArray.sort((a, b) =>
-      a.centerIcon.localeCompare(b.centerIcon)
-    );
-
-    let rowZero = document.querySelector(".row-zero");
-
-    for (let k = 0; k < sortedCards.length; k++) {
-      // Create a new div element
-      let newDivSort = document.createElement("div");
-
-      // Set the class and innerHTML of the new div
-      newDivSort.className = "col-sm-1 number";
-      newDivSort.innerHTML = k;
-
-      // Append the new div to rowZero
-      rowZero.appendChild(newDivSort);
-    }
+  // Display sorted cards
+  sortedCardsContainer.textContent = "Sorted Cards: ";
+  sortedCards.forEach(card => {
+    const sortedCardElement = document.createElement("div");
+    sortedCardElement.className = `card ${card.color}`;
+    sortedCardElement.textContent = `${card.symbol} ${card.value}`;
+    sortedCardsContainer.appendChild(sortedCardElement);
   });
 };
