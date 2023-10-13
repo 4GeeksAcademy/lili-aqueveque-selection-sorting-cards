@@ -15,7 +15,7 @@ h4 {
   font-size: 1.8em;
   text-shadow: 3px 0 #55000e;
 }
-.bubble-log {
+.select-log {
   font-family: "Style Script", cursive;
   font-size: 25px;
   text-align: left;
@@ -113,4 +113,8 @@ h4 {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+.fa-cat {
+  font-size: 1.5em;
+  margin-bottom: 2px;
 }

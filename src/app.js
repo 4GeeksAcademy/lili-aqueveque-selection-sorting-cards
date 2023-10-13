@@ -105,19 +105,21 @@ window.onload = function() {
     cardSound.play();
     sortedCards = [];
     sortedCardsContainer.innerHTML = "";
-    let bubbleLog = document.getElementById("bubble-log");
-    bubbleLog.innerHTML = "Bubble Log";
+    let selectLog = document.getElementById("select-log");
+    selectLog.innerHTML = "Selection Log";
 
-    // Bubble sort the cards
+    // Selection sort the cards
     sortedCards = cards.slice();
     let counter = 0;
-    for (let i = 0; i < sortedCards.length - 1; i++) {
-      for (let j = 0; j < sortedCards.length - 1 - i; j++) {
-        if (parseInt(sortedCards[j].value) > sortedCards[j + 1].value) {
+    let min = 0;
+    let sortedLength = sortedCards.length;
+    while (min < sortedLength - 1) {
+      for (let i = min + 1; i < sortedLength; i++) {
+        if (parseInt(sortedCards[min].value) > parseInt(sortedCards[i].value)) {
           // Swap cards
-          const temp = sortedCards[j];
-          sortedCards[j] = sortedCards[j + 1];
-          sortedCards[j + 1] = temp;
+          let temp = sortedCards[min];
+          sortedCards[min] = sortedCards[i];
+          sortedCards[i] = temp;
         }
       }
 
@@ -174,6 +176,7 @@ window.onload = function() {
       sortedCardsContainer.appendChild(sortedCardsRow);
 
       counter++;
+      min++;
     }
   }
 };
